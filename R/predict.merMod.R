@@ -24,8 +24,8 @@
 #'
 #'# Also works with an overlay plot, using visreg
 #'# First add an artificial group to the sleepstudy data
-#'x <- sort(with(sleepstudy, tapply(Reaction, Subject, mean)))
-#'sleepstudy$Group <- as.factor(ifelse(sleepstudy$Subject %in% names(x[1:9]), "A", "B"))
+#'high <- with(sleepstudy, levels(reorder(Subject,Reaction,mean)))[1:9]
+#'sleepstudy$Group <- factor(ifelse(sleepstudy$Subject %in% high, "A", "B"))
 #'fm2 <- lmer(Reaction ~ Days*Group + (Days | Subject), sleepstudy)
 #'visreg(fm2, "Days", by="Group", overlay=TRUE)
 #'
