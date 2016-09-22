@@ -38,7 +38,11 @@ predict.merMod <- function(object, nsim=getOption("bootnsim"), se.fit=FALSE, alp
     b <- bootMer(object, FUN=function(x)lme4:::predict.merMod(x, ...), nsim=nsim)
     serr <- apply(b$t,2,sd)
     ci <- apply(b$t,2,quantile,probs=c(alpha/2, 1 - alpha/2))
-    return(list(fit=b$t0, se.fit=serr, ci.fit=ci))
+    
+    qn <- qnorm(1 - alpha/2)
+    se_eff <- apply(sweep(ci, 2, b$t0) / qn, 2, function(x)mean(abs(x)))
+    
+    return(list(fit=b$t0, se.fit=se_eff, se.boot=serr, ci.fit=ci))
   } else {
     return(lme4:::predict.merMod(object, ...))
   }
