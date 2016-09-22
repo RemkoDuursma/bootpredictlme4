@@ -1,0 +1,10 @@
+Package: bootpredictlme4
+Type: Package
+Title: Predict Method For lme4 With Bootstrap
+Version: 0.1
+Author: Remko Duursma
+Depends: lme4
+Suggests: visreg
+Maintainer: Remko Duursma <remkoduursma@gmail.com>
+Description: Replaces the predict method for merMod models, adds bootstrap estimates of standard error and confidence intervals. Useful for adding confidence bands in visreg plots.
+RoxygenNote: 5.0.1
