@@ -9,7 +9,10 @@
 #'@param se.fit If TRUE, returns standard error (se.fit) and confidence interval (ci.fit) for the predictions, as components of the returned list.
 #'@param alpha Controls the coverage of the confidence interval. 
 #'@param \dots Further arguments passed to \code{\link{bootMer}}.
-#'@details Two standard errors are calculated. The first (\code{se.fit}) is simply the standard deviation of the bootstrap replicates (i.e. the standard bootstrapped standard error). The second (\code{se.boot}) is the effective standard error, consistent with the asymptotic confidence interval. This standard error is calculated because other methods may estimate a confidence interval based on a standard error, which is inaccurate when using the simple standard error (\code{se.fit}). For example, when the desired coverage of the confidence interval is 0.95, giving a normal quantile of 1.96, the \code{se.boot} is calculated as half confidence interval width divided by 1.96.
+#'@details Two standard errors are calculated. The first (\code{se.fit}) is the effective standard error, consistent with the asymptotic confidence interval. This standard error is calculated because other methods may estimate a confidence interval based on a standard error, which is inaccurate when using the simple standard error (\code{se.boot}). For example, when the desired coverage of the confidence interval is 0.95, giving a normal quantile of 1.96, the \code{se.boot} is calculated as half confidence interval width divided by 1.96.This method is applied especially because \code{\link{visreg}} calculates a confidence interval assuming normality. 
+#'
+#'The second ('se.boot') is imply the standard deviation of the bootstrap replicates (i.e. the standard bootstrapped standard error). 
+#'
 #'@value When \code{se.fit=FALSE} (the default), simply calls \code{\link{predict.merMod}}. If \code{se.fit=TRUE}, invokes the bootstrap, and returns a list with components \code{fit} (fitted value), \code{se.fit} (bootstrapped standard error), \code{se.boot} (effective standard error, reproducing the confidence interval with the assumption of normality), \code{ci.fit} (the bootstrapped confidence interval).
 #'@export
 #'@examples 
